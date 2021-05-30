@@ -62,11 +62,11 @@ const ArgosMenuItem = GObject.registerClass(
             let argv = [];
 
             if (activeLine.terminal === "false") {
-              argv = ["fish", "-c", activeLine.bash];
+              argv = ["terminator", "-x", activeLine.bash];
             } else {
               // Run shell immediately after executing the command to keep the terminal window open
               // (see http://stackoverflow.com/q/3512055)
-              argv = ["terminator", "--", "fish", "-c", activeLine.bash + "; exec ${SHELL:=bash}"];
+              argv = ["terminator", "-x", "" + activeLine.bash + "; fish"];
             }
 
             let [success, pid] = GLib.spawn_async(
